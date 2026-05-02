@@ -6,18 +6,18 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: ArtemSBulgakov/buildozer-action@v1
+      - name: Build APK
+        uses: ArtemSBulgakov/buildozer-action@v1
         with:
           command: buildozer android debug
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: owleyes-apk
-          path: bin/*.apk
